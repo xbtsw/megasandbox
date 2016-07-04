@@ -17,7 +17,18 @@ Sandbox.define('/v1/aggregates/10000/data/{orgUnitId}/{userId}','GET', function(
     res.status(200);
     res.json(result);
 });*/
+// CSRF handling
+Sandbox.define('*','OPTIONS', function(req, res) {
+    var result = generateCourseAccessLastDayData(req.params.orgUnitId);
 
+    res.type('application/json');
+    res.status(200);
+    res.json(result);
+    
+    //res.json({"6613":{"175":{"0":"/Date(1461166825000)/"},"178":{"0": "/Date(1461166825000)/"}}});
+    //res.json({});
+    
+});
 // Last Day of Course Access of all users for Course - NEW ROUTE
 //Sandbox.define('/v1/aggregates/10000/data/{orgUnitId}','GET', function(req, res) {
 Sandbox.define('/v1/aggregates/5/data/{orgUnitId}','GET', function(req, res) {
